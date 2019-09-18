@@ -1,0 +1,43 @@
+#
+# For the google cloud development
+#
+
+# Forst. Make sure that Python 2.7 is installed on your system:
+python -V
+#not -v, -V is correct 
+
+
+#Second, Download Google Cloud SDK
+https://cloud.google.com/sdk/docs/quickstarts
+
+#For macOS
+# download SDK with wget and sdk_url(Date : 2019.09.18)
+wget https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-245.0.0-darwin-x86_64.tar.gz
+
+
+#Third, Extract SDK.tar.gz
+tar -xzvf google-cloud-sdk-245.0.0-darwin-x86_64.tar.gz
+
+
+#Forth, Run install.sh
+./google-cloud-sdk/install.sh
+
+
+#Fifth, After install google-cloud-sdk,
+# Restart your terminal for the changes to take effect.
+
+
+#Sixth, gcloud init
+gcloud init
+
+# 6-1. log in using your Google user account
+# 6-2. select a Cloud Platform project from the list of those where you have Owner
+# 6-3. choose a defult Compute Engine zone: 34    <--- a zone, Tokyo, Japan
+
+#GCP zone ref : https://cloud.google.com/compute/docs/regions-zones/
+# Seoul is still not available.
+# asia-northeast1	a, b, c	Tokyo, Japan
+# asia-northeast2	a, b, c	Osaka, Japan
+
+
+
