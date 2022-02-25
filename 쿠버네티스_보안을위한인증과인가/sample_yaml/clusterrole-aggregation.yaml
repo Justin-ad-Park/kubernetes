@@ -1,0 +1,39 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: parent-clusterrole
+  labels:
+    aggregation-parent-clusterrole: "true"
+rules: 
+- apiGroups: [""]
+  resources: ["nodes"]
+  verbs: ["get", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: child-clusterrole
+aggregationRule:
+  clusterRoleSelectors:
+  - matchLabels:
+      aggregation-parent-clusterrole: "true"
+rules: [] # 어떠한 권한도 정의하지 않았습니다.
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: node-reader-test
+  namespace: default
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: child-clusterrolebinding
+subjects:
+- kind: ServiceAccount
+  name: node-reader-test
+  namespace: default
+roleRef:
+  kind: ClusterRole
+  name: child-clusterrole
+  apiGroup: rbac.authorization.k8s.io
